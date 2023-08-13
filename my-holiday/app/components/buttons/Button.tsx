@@ -1,6 +1,7 @@
 "use client";
 
 import { IconType } from "react-icons";
+import classNames from "classnames";
 
 type ButtonProps = {
   onSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -8,19 +9,29 @@ type ButtonProps = {
   outline?: boolean;
   icon?: IconType;
 };
+
 const Button: React.FC<ButtonProps> = ({
   onSubmit,
   btnLabel,
   outline,
   icon: Icon,
 }) => {
+  const buttonClasses = classNames(
+    "w-full",
+    "h-12",
+    "cursor-pointer",
+    {
+      "border border-black": outline,
+      "bg-black text-white": !outline,
+    },
+    "rounded-md",
+    "flex",
+    "items-center",
+    "justify-center"
+  );
+
   return (
-    <button
-      onClick={onSubmit}
-      className={`w-full h-12 cursor-pointer ${
-        outline ? "border border-black" : "bg-black text-white"
-      } rounded-md flex items-center justify-center`}
-    >
+    <button onClick={onSubmit} className={buttonClasses}>
       {Icon && <Icon size={25} />}
       {btnLabel}
     </button>

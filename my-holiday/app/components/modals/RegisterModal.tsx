@@ -7,6 +7,9 @@ import Button from "../buttons/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { registerModalFunc } from "@/app/redux/modalSlice";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
 const RegisterModal = () => {
   const {
     register,
@@ -23,7 +26,15 @@ const RegisterModal = () => {
   const { registerModal } = useAppSelector((state) => state.modal);
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    axios
+      .post("/api/register", data)
+      .then(() => {
+        dispatch(registerModalFunc());
+        toast.success("Registration successful!!!");
+      })
+      .catch((err: any) => {
+        toast.error("Registration unsuccessful!!!");
+      });
   };
   const bodyElement = (
     <div>
@@ -59,7 +70,9 @@ const RegisterModal = () => {
         btnLabel="Sign in with Google"
         outline
         icon={FcGoogle}
-        onSubmit={() => {}}
+        onSubmit={() => {
+          signIn("google");
+        }}
       />
     </div>
   );

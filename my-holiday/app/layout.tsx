@@ -5,33 +5,34 @@ import MountedClient from "./components/MountedClient";
 import RegisterModal from "./components/modals/RegisterModal";
 import ReduxProvider from "./providers/ReduxProvider";
 import LoginModal from "./components/modals/LoginModal";
+import ToastProvider from "./providers/ToastProvider";
+import getCurrentUser from "./actions/getCurrentUser";
+import ElementModal from "./components/modals/ElementModal";
 
 const newFont = Figtree({
   subsets: ["latin"],
 });
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const user = await getCurrentUser();
   return (
     <html lang="en">
       <body className={newFont.className}>
         <ReduxProvider>
           <MountedClient>
-            {/* <Modal
-            isOpen
-            onSubmit={() => {}}
-            onClose={() => {}}
-            btnLabel="Register"
-            title="Register"
-          /> */}
+            <ToastProvider />
+            <ElementModal />
             <LoginModal />
             <RegisterModal />
-            <Navbar />
+            <Navbar user={user} />
           </MountedClient>
           {children}
         </ReduxProvider>
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}

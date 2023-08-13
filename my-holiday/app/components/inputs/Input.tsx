@@ -1,5 +1,5 @@
-"use client";
 import { UseFormRegister, FieldValues, FieldErrors } from "react-hook-form";
+
 type InputProps = {
   type: string;
   id: string;
@@ -8,6 +8,7 @@ type InputProps = {
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
 };
+
 const Input: React.FC<InputProps> = ({
   type,
   id,
@@ -16,11 +17,13 @@ const Input: React.FC<InputProps> = ({
   required,
   errors,
 }) => {
+  const hasError = errors[id];
+
   return (
     <div className="mb-3">
       <input
         className={`${
-          errors[id]
+          hasError
             ? "border border-red-500 animate-pulse"
             : "border border-gray-300"
         } w-full h-12 px-3 text-lg outline-none rounded-md`}

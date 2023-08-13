@@ -7,6 +7,9 @@ import Button from "../buttons/Button";
 import { FcGoogle } from "react-icons/fc";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { loginModalFunc, registerModalFunc } from "@/app/redux/modalSlice";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 const LoginModal = () => {
   const {
     register,
@@ -18,10 +21,23 @@ const LoginModal = () => {
       password: "",
     },
   });
+  const router = useRouter();
   const { loginModal } = useAppSelector((state) => state.modal);
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      if (callback?.ok) {
+        dispatch(loginModalFunc());
+        router.refresh();
+        toast.success("Login Successful !!!");
+      }
+      if (callback?.error) {
+        toast.error("Login Failed !!!");
+      }
+    });
   };
   const bodyElement = (
     <div>
@@ -49,7 +65,9 @@ const LoginModal = () => {
         btnLabel="Sign in with Google"
         outline
         icon={FcGoogle}
-        onSubmit={() => {}}
+        onSubmit={() => {
+          signIn("google");
+        }}
       />
     </div>
   );
