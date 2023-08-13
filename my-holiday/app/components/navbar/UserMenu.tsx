@@ -35,7 +35,7 @@ const UserMenu = ({ user }: { user: User | any | undefined }) => {
       />
 
       {openMenu && (
-        <div className="absolute bg-white shadow-lg shadow-gray-500 w-[150px] top-16 right-0">
+        <div className="absolute bg-white shadow-lg shadow-primaryColor w-[150px] top-16 right-0 rounded-md">
           {user ? (
             <>
               <UserMenuItem
