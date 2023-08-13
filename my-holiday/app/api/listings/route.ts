@@ -10,7 +10,7 @@ export async function POST(request: Request) {
   }
   const body = await request.json();
 
-  const { imageSrc, category, roomCount, location } = body;
+  const { imageSrc, category, roomCount, hotelName, location } = body;
 
   Object.keys(body).forEach((value: any) => {
     if (!body[value]) {
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
   const listing = await prisma.listing.create({
     data: {
       imageSrc,
+      hotelName,
       category,
       roomCount,
       locationValue: location.value,
