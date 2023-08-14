@@ -6,15 +6,15 @@ import { useSearchParams } from "next/navigation";
 
 export const categories = [
   {
-    name: "Tatil-Köyü",
+    name: "Village",
     icon: FaUmbrellaBeach,
   },
   {
-    name: "Kamp",
+    name: "Camp",
     icon: LuHotel,
   },
   {
-    name: "Otel",
+    name: "Hotel",
     icon: FaUmbrellaBeach,
   },
   {
