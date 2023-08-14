@@ -1,3 +1,5 @@
+"use client";
+
 import { IconType } from "react-icons";
 
 type CategorySelectProps = {
@@ -6,22 +8,18 @@ type CategorySelectProps = {
   selected: boolean;
   onClick: (value: string) => void;
 };
-
 const CategorySelect: React.FC<CategorySelectProps> = ({
   name,
   icon: Icon,
   selected,
   onClick,
 }) => {
-  const handleClick = () => {
-    onClick(name);
-  };
-
-  const textColor = selected ? "text-black" : "text-gray-400";
-
   return (
     <div
-      className={`${textColor} cursor-pointer flex flex-col items-center sm:flex-row sm:items-center sm:space-x-2`}
+      className={`${
+        selected ? "text-black " : "text-primaryColor scale-90 animate-pulse"
+      } cursor-pointer flex flex-col items-center`}
+      onClick={() => onClick(name)}
     >
       <Icon size={25} />
       <div className="text-lg tracking-wider font-semibold">{name}</div>
