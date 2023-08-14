@@ -7,7 +7,7 @@ import UserMenu from "./UserMenu";
 
 const Navbar = ({ user }: { user: User | any | undefined }) => {
   return (
-    <div className="flex items-center justify-between h-16 bg-gray-100 px-7">
+    <div className="flex items-center text-white justify-between h-16 bg-primarySecColor px-7 ">
       <Logo />
       <Categories />
       <UserMenu user={user} />
