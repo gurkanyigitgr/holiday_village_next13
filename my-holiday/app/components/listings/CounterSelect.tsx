@@ -1,40 +1,46 @@
 "use client";
-import { AiOutlineMinusCircle } from "react-icons/ai";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useState } from "react";
 
 type CounterSelectProps = {
   title: string;
-  description: string;
   value: number;
   onChange: (value: number) => void;
 };
 
 const CounterSelect: React.FC<CounterSelectProps> = ({
   title,
-  description,
   value,
   onChange,
 }) => {
-  const decrement = () => {
-    if (value == 1) return null;
-    onChange(value - 1);
+  const [inputVal, setInputVal] = useState(value.toString());
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputVal(e.target.value);
   };
-  const increment = () => {
-    onChange(value + 1);
+
+  const handleInputBlur = () => {
+    const parsedValue = parseInt(inputVal);
+    if (!isNaN(parsedValue)) {
+      onChange(parsedValue);
+    } else {
+      setInputVal(value.toString());
+    }
   };
+
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center space-y-1 mb-3">
-        <div className="font-bold text-xl">{title}</div>
-        <div className="text-gray-500 text-sm text-center">{description}</div>
+      <div className="space-y-1 mb-3">
+        <div className="font-bold">{title}</div>
       </div>
-      <div className="flex w-1/4 justify-evenly space-x-4 mb-5">
-        <div onClick={decrement}>
-          <AiOutlineMinusCircle size={30} />
-        </div>
-        <div className="text-2xl font-bold">{value}</div>
-        <div onClick={increment}>
-          <AiOutlinePlusCircle size={30} />
+      <div className=" space-x-4 mb-5">
+        <div className="text-lg font-bold">
+          <input
+            className="text-center p-1 rounded-md"
+            type="number"
+            value={inputVal}
+            onChange={handleInputChange}
+            onBlur={handleInputBlur}
+          />
         </div>
       </div>
     </div>
