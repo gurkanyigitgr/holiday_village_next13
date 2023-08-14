@@ -53,7 +53,7 @@ const Modal: React.FC<ModalProps> = ({
   }
   return (
     <div className="bg-black bg-opacity-70 fixed flex items-center justify-center w-full h-full">
-      <div className="bg-white rounded-lg p-5 w-1/2" ref={modalRef}>
+      <div className="bg-white rounded-lg p-10 w-2/5" ref={modalRef}>
         <div className="flex items-center justify-between pb-3 mb-3 border-b">
           <div className="text-2xl ">{title}</div>
           <div onClick={closeFunc}>
@@ -61,7 +61,9 @@ const Modal: React.FC<ModalProps> = ({
           </div>
         </div>
         <div>{bodyElement}</div>
-        <Button onSubmit={submitFunc} btnLabel={btnLabel} />
+        <div className="py-2">
+          <Button onSubmit={submitFunc} btnLabel={btnLabel} />
+        </div>
         <div>{footerElement}</div>
       </div>
     </div>
