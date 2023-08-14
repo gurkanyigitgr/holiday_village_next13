@@ -2,7 +2,6 @@
 import Select from "react-select";
 import Countries from "world-countries";
 
-console.log(Countries);
 export const getCountries = Countries?.map((countries) => {
   return {
     name: countries.name.common,
@@ -21,7 +20,13 @@ const options: any = getCountries.map((country) => ({
 }));
 const CountrySelect: React.FC<CountyrSelectProps> = ({ value, onChange }) => {
   return (
-    <div>
+    <div className="w-full space-y-2">
+      <label
+        className="font-bold flex justify-center items-center"
+        htmlFor="country"
+      >
+        Country
+      </label>
       <Select
         placeholder="Select Country"
         options={options}
