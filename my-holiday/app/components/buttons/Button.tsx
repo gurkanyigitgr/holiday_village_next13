@@ -22,12 +22,14 @@ const Button: React.FC<ButtonProps> = ({
     "cursor-pointer",
     {
       "border border-black": outline,
-      "bg-black text-white": !outline,
+      "bg-primaryColor text-white": !outline,
     },
     "rounded-md",
     "flex",
     "items-center",
-    "justify-center"
+    "justify-center",
+    "hover:bg-black",
+    "text-lg"
   );
 
   return (
