@@ -20,11 +20,11 @@ const UserMenu = ({ user }: { user: User | any | undefined }) => {
   return (
     <div
       onClick={() => setOpenMenu(!openMenu)}
-      className="relative flex items-center space-x-5 cursor-pointer"
+      className="relative flex items-center space-x-5 cursor-pointer "
     >
       <GiHamburgerMenu size={25} />
       <Image
-        className="rounded-full"
+        className="rounded-full text-white"
         src={
           user?.image ||
           "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
@@ -35,7 +35,7 @@ const UserMenu = ({ user }: { user: User | any | undefined }) => {
       />
 
       {openMenu && (
-        <div className="absolute bg-white shadow-lg shadow-primaryColor w-[150px] top-16 right-0 rounded-md">
+        <div className="absolute bg-white shadow-lg text-primarySecColor shadow-primaryColor w-[150px] top-16 right-0 rounded-md">
           {user ? (
             <>
               <UserMenuItem
