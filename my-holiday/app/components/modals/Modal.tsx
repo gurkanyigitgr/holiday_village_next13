@@ -52,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
   return (
-    <div className="bg-black bg-opacity-70 fixed flex items-center justify-center w-full h-full">
+    <div className="bg-black bg-opacity-70 fixed flex items-center justify-center w-full h-full z-50">
       <div className="bg-white rounded-lg p-10 w-2/5" ref={modalRef}>
         <div className="flex items-center justify-between pb-3 mb-3 border-b">
           <div className="text-2xl ">{title}</div>
